@@ -1,0 +1,289 @@
+******************************************************************************
+                  TI ARM Linker Unix v20.2.7                   
+******************************************************************************
+>> Linked Sat Nov  2 23:40:10 2024
+
+OUTPUT FILE NAME:   <Tiva general library.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00001255
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  000016c2  0003e93e  R  X
+  SRAM                  20000000   00008000  000003f0  00007c10  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    000016c8   000016c8    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00001076   00001076    r-x .text
+  000012e4    000012e4    00000350   00000350    r-- .const
+  00001638    00001638    00000090   00000090    r-- .cinit
+20000000    20000000    000003f0   00000000    rw-
+  20000000    20000000    00000200   00000000    rw- .stack
+  20000200    20000200    00000150   00000000    rw- .data
+  20000350    20000350    000000a0   00000000    rw- .bss
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    00001076     
+                  0000026c    00000d10     MagicTiva.obj (.text)
+                  00000f7c    00000128     main_test.obj (.text)
+                  000010a4    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00001140    00000068     driverlib.lib : interrupt.obj (.text:IntEnable)
+                  000011a8    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00001210    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00001254    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00001288    0000001c                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  000012a4    00000010     driverlib.lib : interrupt.obj (.text:IntMasterEnable)
+                  000012b4    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  000012c2    0000000c     driverlib.lib : cpu.obj (.text:CPUcpsie)
+                  000012ce    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  000012da    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  000012de    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.const     0    000012e4    00000350     
+                  000012e4    000001f8     MagicTiva.obj (.const:timers)
+                  000014dc    00000138     MagicTiva.obj (.const:ports)
+                  00001614    00000014     driverlib.lib : interrupt.obj (.const:g_pui32EnRegs)
+                  00001628    0000000c     MagicTiva.obj (.const:.string:analogPins)
+
+.cinit     0    00001638    00000090     
+                  00001638    00000066     (.cinit..data.load) [load image, compression = lzss]
+                  0000169e    00000002     --HOLE-- [fill = 0]
+                  000016a0    0000000c     (__TI_handler_table)
+                  000016ac    00000004     --HOLE-- [fill = 0]
+                  000016b0    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  000016b8    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000200    00000150     UNINITIALIZED
+                  20000200    00000150     MagicTiva.obj (.data:timerPinsTable)
+
+.bss       0    20000350    000000a0     UNINITIALIZED
+                  20000350    00000034     (.common:greenPWM)
+                  20000384    00000034     (.common:redPWM)
+                  200003b8    00000024     (.common:emptyTimerDev)
+                  200003dc    0000000c     (.common:emptyTimerPin)
+                  200003e8    00000004     (.common:adcResult)
+                  200003ec    00000004     (.common:myInterrupt)
+
+.stack     0    20000000    00000200     UNINITIALIZED
+                  20000000    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  20000004    000001fc     --HOLE--
+
+__llvm_prf_cnts 
+*          0    20000000    00000000     UNINITIALIZED
+
+MODULE SUMMARY
+
+       Module                         code   ro data   rw data
+       ------                         ----   -------   -------
+    ./
+       MagicTiva.obj                  3344   828       388    
+       tm4c123gh6pm_startup_ccs.obj   12     620       0      
+       main_test.obj                  296    0         108    
+    +--+------------------------------+------+---------+---------+
+       Total:                         3652   1448      496    
+                                                              
+    ../driverlib.lib
+       interrupt.obj                  120    20        0      
+       cpu.obj                        12     0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         132    20        0      
+                                                              
+    /Applications/ti/ccs1220/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj              156    0         0      
+       copy_decompress_lzss.c.obj     104    0         0      
+       autoinit.c.obj                 68     0         0      
+       boot_cortex_m.c.obj            52     0         0      
+       copy_zero_init.c.obj           28     0         0      
+       copy_decompress_none.c.obj     14     0         0      
+       exit.c.obj                     4      0         0      
+       pre_init.c.obj                 4      0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         430    0         0      
+                                                              
+       Stack:                         0      0         512    
+       Linker Generated:              0      138       0      
+    +--+------------------------------+------+---------+---------+
+       Grand Total:                   4214   1606      1008   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 000016b8 records: 2, size/record: 8, table size: 16
+	.data: load addr=00001638, load size=00000066 bytes, run addr=20000200, run size=00000150 bytes, compression=lzss
+	.bss: load addr=000016b0, load size=00000008 bytes, run addr=20000350, run size=000000a0 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 000016a0 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                          
+-------   ----                          
+000012df  C$$EXIT                       
+000012c3  CPUcpsie                      
+00001141  IntEnable                     
+000012a5  IntMasterEnable               
+0000102f  PortFISR                      
+000012cf  ResetISR                      
+20000200  __STACK_END                   
+00000200  __STACK_SIZE                  
+20000200  __STACK_TOP                   
+000016b8  __TI_CINIT_Base               
+000016c8  __TI_CINIT_Limit              
+000016a0  __TI_Handler_Table_Base       
+000016ac  __TI_Handler_Table_Limit      
+00001211  __TI_auto_init_nobinit_nopinit
+000011a9  __TI_decompress_lzss          
+000012b5  __TI_decompress_none          
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+00000000  __TI_static_base__            
+00001289  __TI_zero_init_nomemset       
+000010a5  __aeabi_memcpy                
+000010a5  __aeabi_memcpy4               
+000010a5  __aeabi_memcpy8               
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+UNDEFED   __mpu_init                    
+20000000  __stack                       
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+00001255  _c_int00_noargs               
+UNDEFED   _system_post_cinit            
+000012db  _system_pre_init              
+000012df  abort                         
+200003e8  adcResult                     
+000009a9  analogRead                    
+ffffffff  binit                         
+00000f33  changeRegister                
+0000067d  digitalRead                   
+00000571  digitalWrite                  
+200003b8  emptyTimerDev                 
+200003dc  emptyTimerPin                 
+00000819  enableInterrupt               
+00000a4f  freqToTicks                   
+00000000  g_pfnVectors                  
+00000ccd  generateSignal                
+00000f07  getPinNumber                  
+00000f1f  getPort                       
+00000df5  getTimerNumber                
+00000d6d  getTimerPin                   
+20000350  greenPWM                      
+00000779  initInterrupt                 
+00000a19  isAnalog                      
+00000f7d  main                          
+000010a5  memcpy                        
+00000ecb  msDelay                       
+200003ec  myInterrupt                   
+0000026d  pinMode                       
+0000047f  pinPullup                     
+00000e57  pinToTimer                    
+000014dc  ports                         
+20000384  redPWM                        
+00000b71  timerEnable                   
+00000a81  timerInit                     
+20000200  timerPinsTable                
+00000bf1  timerUpdate                   
+000012e4  timers                        
+00000861  updateInterrupt               
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                          
+-------   ----                          
+00000000  __TI_static_base__            
+00000000  g_pfnVectors                  
+00000200  __STACK_SIZE                  
+0000026d  pinMode                       
+0000047f  pinPullup                     
+00000571  digitalWrite                  
+0000067d  digitalRead                   
+00000779  initInterrupt                 
+00000819  enableInterrupt               
+00000861  updateInterrupt               
+000009a9  analogRead                    
+00000a19  isAnalog                      
+00000a4f  freqToTicks                   
+00000a81  timerInit                     
+00000b71  timerEnable                   
+00000bf1  timerUpdate                   
+00000ccd  generateSignal                
+00000d6d  getTimerPin                   
+00000df5  getTimerNumber                
+00000e57  pinToTimer                    
+00000ecb  msDelay                       
+00000f07  getPinNumber                  
+00000f1f  getPort                       
+00000f33  changeRegister                
+00000f7d  main                          
+0000102f  PortFISR                      
+000010a5  __aeabi_memcpy                
+000010a5  __aeabi_memcpy4               
+000010a5  __aeabi_memcpy8               
+000010a5  memcpy                        
+00001141  IntEnable                     
+000011a9  __TI_decompress_lzss          
+00001211  __TI_auto_init_nobinit_nopinit
+00001255  _c_int00_noargs               
+00001289  __TI_zero_init_nomemset       
+000012a5  IntMasterEnable               
+000012b5  __TI_decompress_none          
+000012c3  CPUcpsie                      
+000012cf  ResetISR                      
+000012db  _system_pre_init              
+000012df  C$$EXIT                       
+000012df  abort                         
+000012e4  timers                        
+000014dc  ports                         
+000016a0  __TI_Handler_Table_Base       
+000016ac  __TI_Handler_Table_Limit      
+000016b8  __TI_CINIT_Base               
+000016c8  __TI_CINIT_Limit              
+20000000  __stack                       
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+20000200  __STACK_END                   
+20000200  __STACK_TOP                   
+20000200  timerPinsTable                
+20000350  greenPWM                      
+20000384  redPWM                        
+200003b8  emptyTimerDev                 
+200003dc  emptyTimerPin                 
+200003e8  adcResult                     
+200003ec  myInterrupt                   
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+ffffffff  binit                         
+UNDEFED   __mpu_init                    
+UNDEFED   _system_post_cinit            
+
+[68 symbols]
