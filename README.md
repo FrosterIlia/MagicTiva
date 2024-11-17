@@ -7,14 +7,14 @@ The library supports use of such peripherals as GPIO, Timers, ADC, Interrupts, U
 
 ## Installation 
 To install the library, you need to import files: MagicTiva.c, MagicTiva.h, driverlib.lib and tm4c123gh6pm.h into your project and include it in your code
-```
+```C
 #include "MagicTiva.h"
 #include "tm4c123gh6pm.h" // device specific include file
 ```
 
 ## GPIO
 Note that to use any pin, pinMode() has to be called first, then depending on the current mode on the pin, other functions may be used.
-```
+```C
 #define INPUT 0
 #define OUTPUT 1
 #define ANALOG 2
@@ -28,8 +28,8 @@ uint analogRead(uint8_t pin);
 
 
 ## Interrupts
-To create an interrupt, you have to initialize a struct Interrupt and set the parameters for it. Then initInterrupt() initialises the interrupt, and updateInterrupt has to be called every time, you want to apply any changes. Changes can be applied by assigning values to the Timer struct.
-```
+To create an interrupt, you have to initialize a struct Interrupt and set the parameters for it. Then initInterrupt() initialises the interrupt, and updateInterrupt has to be called every time, you want to apply any changes. Changes can be applied by assigning values to the Interrupt struct.
+```C
 #define EDGE 0
 #define LEVEL 1
 
@@ -53,8 +53,8 @@ void enableInterrupt(Interrupt *intrpt, bool value);
 void updateInterrupt(Interrupt *intrpt);
 ```
 ## Timers 
-
-```
+To use a timer, you need to create an instance of a struct Timer. Then you need to call function init and the default settings will be set to a timer. If you want to change those settings, you can change the struct members to set frequency or duty_cycle. To apply changes, you need to call timerUpdate() and to start generating signal, use generateSignal()
+```C
 #define PWM_MODE 0
 #define ONE_SHOT_MODE 1
 #define PERIODIC_MODE 2
@@ -78,6 +78,6 @@ void generateSignal(Timer *timer, bool state);
 
 ## Time Utilities
 
-```
+```C
 void msDelay(unsigned int ms); // creates a delay assuming core frequency is 16MHz
 ```
